@@ -61,7 +61,7 @@ class DAO():
         query = """
             select n.state1, n.state2, s1.`datetime` as date1, s2.`datetime`as date2, count(distinct s1.id) + count(distinct s2.id) as peso
             from neighbor n, sighting s1, sighting s2
-            where s1.id < s2.id 
+            where s1.id != s2.id 
                 and s1.state = n.state1 and s2.state = n.state2
                 and year(s1.`datetime`) = year(s2.`datetime`) and year(s1.`datetime`) = %s
                 and datediff(s2.`datetime`, s1.`datetime`) <= %s
